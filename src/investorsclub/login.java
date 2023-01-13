@@ -185,20 +185,23 @@ public class login extends javax.swing.JFrame {
                              System.out.println(iname);
                            //  IHomePage.investorname.setText(iname);
                          IHomePage hp = new IHomePage();
+                         hp.jLabel1.setText(iname);
                          hp.setVisible(true);
-                         hp.pack();
-                       hp.setLocation(null);
-                         hp.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);  
                  }else{
                      
                       String query3 = "select * from usertest where username = '" + username1 + "' and password = '" + password1 + "' and choice = 'Founder'";
                  ResultSet rsChoice1 =stm.executeQuery(query3);
-                 
-                         FHomePage hp = new FHomePage();   
+                 if(rsChoice1.next()){
+                    
+                       String fname = rsChoice1.getString(1);
+                             System.out.println(fname);
+                           //  IHomePage.investorname.setText(iname);
+                        FHomePage hp = new FHomePage();  
+                         hp.foundername.setText(fname);
                          hp.setVisible(true);
-                        hp.pack();
-                      hp.setLocation(null);
-                        hp.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);    
+                 }
+
+   
                  }               
            }else{
                    JOptionPane.showMessageDialog(this,"incorrect username and password");
