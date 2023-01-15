@@ -217,11 +217,14 @@ public class login extends javax.swing.JFrame {
                  if(rsChoice1.next()){
                     
                        String fname = rsChoice1.getString(1);
-                             System.out.println(fname);
+                         //    System.out.println(fname);
                            //  IHomePage.investorname.setText(iname);
-                        FHomePage hp = new FHomePage();  
-                         hp.foundername.setText(fname);
-                         hp.setVisible(true);
+                            String username = rsChoice1.getString(2);
+                           
+                           
+                        StartupInfo si = new StartupInfo();  
+                         si.username.setText(username);
+                         si.setVisible(true);
                  }
 
    

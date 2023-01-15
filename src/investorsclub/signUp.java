@@ -199,10 +199,6 @@ public class signUp extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_optionActionPerformed
 
-    private void nameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nameActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_nameActionPerformed
-
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
         
@@ -245,6 +241,10 @@ public class signUp extends javax.swing.JFrame {
                u.setLocation(null);
                u.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); 
     }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void nameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nameActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_nameActionPerformed
 
     /**
      * @param args the command line arguments
