@@ -97,7 +97,7 @@
                                           <Component id="button1" min="-2" pref="86" max="-2" attributes="0"/>
                                       </Group>
                                   </Group>
-                                  <EmptySpace pref="174" max="32767" attributes="0"/>
+                                  <EmptySpace pref="178" max="32767" attributes="0"/>
                               </Group>
                               <Group type="102" attributes="0">
                                   <Group type="103" groupAlignment="0" attributes="0">
@@ -123,7 +123,7 @@
                                           </Group>
                                       </Group>
                                   </Group>
-                                  <EmptySpace pref="231" max="32767" attributes="0"/>
+                                  <EmptySpace pref="236" max="32767" attributes="0"/>
                               </Group>
                           </Group>
                       </Group>
@@ -162,7 +162,7 @@
                                   </Group>
                               </Group>
                           </Group>
-                          <EmptySpace min="300" pref="241" max="32767" attributes="0"/>
+                          <EmptySpace min="300" pref="247" max="32767" attributes="0"/>
                       </Group>
                       <Group type="102" alignment="0" attributes="0">
                           <Group type="103" groupAlignment="1" max="-2" attributes="0">
@@ -567,12 +567,12 @@
         <Component class="javax.swing.JLabel" name="jLabel20">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Segoe UI Black" size="12" style="1"/>
+              <Font name="Segoe UI" size="12" style="1"/>
             </Property>
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="ff" green="ff" red="ff" type="rgb"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="username:"/>
+            <Property name="text" type="java.lang.String" value="USERNAME:"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="lname">

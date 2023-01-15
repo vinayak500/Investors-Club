@@ -4,6 +4,11 @@
  */
 package investorsclub;
 
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.Statement;
+
 /**
  *
  * @author vinay
@@ -38,9 +43,9 @@ public class FHomePage extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
-        jLabel8 = new javax.swing.JLabel();
-        jLabel9 = new javax.swing.JLabel();
-        jLabel12 = new javax.swing.JLabel();
+        cname = new javax.swing.JLabel();
+        curval = new javax.swing.JLabel();
+        sector = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -87,17 +92,17 @@ public class FHomePage extends javax.swing.JFrame {
         jLabel11.setForeground(new java.awt.Color(255, 255, 255));
         jLabel11.setText("CURRENT VALUATION:");
 
-        jLabel8.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel8.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel8.setText("APPLE");
+        cname.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        cname.setForeground(new java.awt.Color(255, 255, 255));
+        cname.setText("APPLE");
 
-        jLabel9.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jLabel9.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel9.setText("100 CR");
+        curval.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        curval.setForeground(new java.awt.Color(255, 255, 255));
+        curval.setText("100 CR");
 
-        jLabel12.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jLabel12.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel12.setText("TECH");
+        sector.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        sector.setForeground(new java.awt.Color(255, 255, 255));
+        sector.setText("TECH");
 
         jButton1.setBackground(new java.awt.Color(255, 153, 51));
         jButton1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
@@ -120,7 +125,7 @@ public class FHomePage extends javax.swing.JFrame {
                         .addComponent(jLabel11)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(curval, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                                 .addGap(0, 0, Short.MAX_VALUE)
                                 .addComponent(jButton1)
@@ -128,11 +133,11 @@ public class FHomePage extends javax.swing.JFrame {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(sector, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(cname, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(16, 16, 16))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -144,16 +149,19 @@ public class FHomePage extends javax.swing.JFrame {
                         .addComponent(jLabel3))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(26, 26, 26)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 176, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                     .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(fname, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(username, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(username, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(fname, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE))))))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(67, 67, 67)
                         .addComponent(jLabel5)))
@@ -181,14 +189,14 @@ public class FHomePage extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel8))
+                    .addComponent(cname))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel11)
-                    .addComponent(jLabel9))
+                    .addComponent(curval))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel12)
+                    .addComponent(sector)
                     .addComponent(jLabel4))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jButton1)
@@ -200,8 +208,8 @@ public class FHomePage extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 362, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 541, Short.MAX_VALUE))
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 358, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 545, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -213,9 +221,99 @@ public class FHomePage extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-                        StartupInfo si = new StartupInfo();  
-                         si.button1.setText("UPDATE");
-                         si.setVisible(true);
+        
+        String fname="";
+        String lname="";
+        String usernamee="";
+        String fid="";
+        
+          try{
+               Class.forName("com.mysql.cj.jdbc.Driver");
+              Connection con=DriverManager.getConnection("jdbc:mysql://localhost:3306/investclub?allowPublicKeyRetrieval=true&useSSL=false","root","ROHANshetty25");
+            Statement stm=con.createStatement();
+                    String query = "select * from founder where username ='" + username.getText() + "';";
+                   ResultSet rs=stm.executeQuery(query);
+               
+                   if(rs.next()){
+                     fname =   rs.getString(1);
+                      lname =   rs.getString(2);
+                       usernamee =   rs.getString(3);
+                        fid =   rs.getString(4);
+                   
+                   }              
+           }catch(Exception e){             
+           }
+          
+          String cname1 = "";
+          String sector1 = "";
+          String city1 = "";
+          String state1 = "";
+          String cid1 = "";
+          
+            try{
+               Class.forName("com.mysql.cj.jdbc.Driver");
+              Connection con=DriverManager.getConnection("jdbc:mysql://localhost:3306/investclub?allowPublicKeyRetrieval=true&useSSL=false","root","ROHANshetty25");
+            Statement stm=con.createStatement();
+                    String query = "select * from company where fid ='" + fid + "';";
+                   ResultSet rs=stm.executeQuery(query);
+               
+                   if(rs.next()){
+                     cname1 =   rs.getString(1);
+                      sector1 =   rs.getString(2);
+                       city1 =   rs.getString(3);
+                        state1 =   rs.getString(4);
+                         cid1 =   rs.getString(5);
+                   
+                   }              
+           }catch(Exception e){             
+           }
+            
+            
+            String curval1 = ""; 
+             String anr1 = ""; 
+              String assets1 = ""; 
+               String liabilities1 = ""; 
+                String noofemp1 = ""; 
+                 String tfundsraised1 = ""; 
+               
+            
+                try{
+               Class.forName("com.mysql.cj.jdbc.Driver");
+              Connection con=DriverManager.getConnection("jdbc:mysql://localhost:3306/investclub?allowPublicKeyRetrieval=true&useSSL=false","root","ROHANshetty25");
+            Statement stm=con.createStatement();
+                    String query = "select * from financials where cid ='" + cid1 + "';";
+                   ResultSet rs=stm.executeQuery(query);
+               
+                   if(rs.next()){
+                     curval1 =   rs.getString(1);
+                      anr1 =   rs.getString(2);
+                       assets1 =   rs.getString(3);
+                        liabilities1 =   rs.getString(4);
+                           noofemp1 =   rs.getString(5);
+                              tfundsraised1 =   rs.getString(6);
+                   
+                   }              
+           }catch(Exception e){             
+           }
+                
+                
+          
+          
+          
+        
+          UpdateStartupInfo ui = new UpdateStartupInfo();
+          ui.fname1.setText(fname);
+           ui.lname1.setText(lname);
+            ui.username1.setText(usernamee);
+           ui.update.setText("UPDATE");
+           
+           
+           ui.cname.setText(cname1);
+            ui.sector.setText(sector1);
+             ui.city.setText(city1);
+              ui.state.setText(state1);
+           
+                         ui.setVisible(true);    
         
     }//GEN-LAST:event_jButton1ActionPerformed
 
@@ -255,21 +353,21 @@ public class FHomePage extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    public javax.swing.JLabel cname;
+    public static javax.swing.JLabel curval;
     public static javax.swing.JLabel fname;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
-    private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
-    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
+    public static javax.swing.JLabel sector;
     public static javax.swing.JLabel username;
     // End of variables declaration//GEN-END:variables
 }

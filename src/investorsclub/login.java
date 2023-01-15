@@ -207,8 +207,7 @@ public class login extends javax.swing.JFrame {
                        String iname = rsChoice.getString(1);
                              System.out.println(iname);
                            //  IHomePage.investorname.setText(iname);
-                         IHomePage hp = new IHomePage();
-                         hp.jLabel1.setText(iname);
+                         investorInfo hp = new investorInfo();
                          hp.setVisible(true);
                  }else{
                      
@@ -240,12 +239,9 @@ public class login extends javax.swing.JFrame {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
-              dispose();
+             
         signUp su = new signUp();
-         su.setVisible(true);
-         su.pack();
-               su.setLocation(null);
-               su.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); 
+         su.setVisible(true); 
         
     }//GEN-LAST:event_jButton2ActionPerformed
 
