@@ -208,6 +208,8 @@ public class login extends javax.swing.JFrame {
                              System.out.println(iname);
                            //  IHomePage.investorname.setText(iname);
                          investorInfo hp = new investorInfo();
+                         hp.usernamefeild.setText(username1);
+                         
                          hp.setVisible(true);
                  }else{
                      
