@@ -184,7 +184,7 @@ public class signUp extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 459, Short.MAX_VALUE))
+                .addContainerGap(459, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -201,7 +201,7 @@ public class signUp extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
         
-        String name1 = email.getText();
+        String email1 = email.getText();
         String username1 = username.getText();
         String password1 = password.getText();
         
@@ -214,16 +214,16 @@ public class signUp extends javax.swing.JFrame {
               
                
                // insert into usertest values('arjun' , '1234');
-                      String query = "insert into usertest values(?,?,?,?);";
+                      String query = "insert into user values(?,?,?,?,?);";
                       PreparedStatement p = con.prepareStatement(query);
-                      p.setString(1,name1);
+                      p.setString(1,email1);
                       p.setString(2,username1);
                        p.setString(3,password1);
                        p.setString(4,choice1);
+                        p.setInt(5,0);
 
-                      
                       p.executeUpdate();
-                      JOptionPane.showMessageDialog(this,"Inserted Succesfully");
+                      JOptionPane.showMessageDialog(this,"Sign Up Sucessfull");
                       con.close();
       }catch(Exception e){
           
@@ -234,6 +234,7 @@ public class signUp extends javax.swing.JFrame {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
+        dispose();
          login u = new login();
          u.setVisible(true);
          u.pack();

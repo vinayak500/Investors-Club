@@ -3,6 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package investorsclub;
+import static investorsclub.UpdateStartupInfo.id;
 import java.sql.*;
 import javax.swing.JOptionPane;
 /**
@@ -562,6 +563,26 @@ public class StartupInfo extends javax.swing.JFrame {
            }catch(Exception e){
             System.out.println(e); 
          } 
+  
+  
+ PreparedStatement pst;
+           try{
+                   Class.forName("com.mysql.cj.jdbc.Driver");
+              Connection con=DriverManager.getConnection("jdbc:mysql://localhost:3306/investclub?allowPublicKeyRetrieval=true&useSSL=false","root","ROHANshetty25");
+           String query = "UPDATE user set count ="+ 1 +" where username ='" + username1 +"';";
+                        pst = con.prepareStatement(query);
+                          pst.execute();
+                      JOptionPane.showMessageDialog(this,"updated user");
+                      con.close();
+                       
+           }catch(Exception e){
+            System.out.println(e); 
+         }
+  
+  
+  
+  
+  
     dispose();
     
     

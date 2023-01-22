@@ -4,6 +4,14 @@
  */
 package investorsclub;
 
+import static investorsclub.FHomePage.username;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.Statement;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author vinay
@@ -43,6 +51,7 @@ public class IHomePage extends javax.swing.JFrame {
         sectori = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -117,6 +126,15 @@ public class IHomePage extends javax.swing.JFrame {
             }
         });
 
+        jButton2.setBackground(new java.awt.Color(255, 153, 51));
+        jButton2.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jButton2.setText("DELETE");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -149,8 +167,10 @@ public class IHomePage extends javax.swing.JFrame {
                 .addContainerGap(27, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(jButton1)
-                .addGap(79, 79, 79))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jButton2)
+                    .addComponent(jButton1))
+                .addGap(76, 76, 76))
             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanel1Layout.createSequentialGroup()
                     .addGap(49, 49, 49)
@@ -192,9 +212,11 @@ public class IHomePage extends javax.swing.JFrame {
                 .addComponent(jLabel9)
                 .addGap(34, 34, 34)
                 .addComponent(tci)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 63, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 41, Short.MAX_VALUE)
                 .addComponent(jButton1)
-                .addGap(110, 110, 110))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jButton2)
+                .addGap(81, 81, 81))
             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanel1Layout.createSequentialGroup()
                     .addGap(201, 201, 201)
@@ -220,7 +242,7 @@ public class IHomePage extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 404, Short.MAX_VALUE))
+                .addGap(0, 644, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -232,7 +254,150 @@ public class IHomePage extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
+          System.out.println("hello");
+         String fname="";
+        String lname="";
+        String usernamee="";
+        String vid="";
+        
+          try{
+               Class.forName("com.mysql.cj.jdbc.Driver");
+              Connection con=DriverManager.getConnection("jdbc:mysql://localhost:3306/investclub?allowPublicKeyRetrieval=true&useSSL=false","root","ROHANshetty25");
+            Statement stm=con.createStatement();
+                    String query = "select * from investor where username ='" + usernamei.getText() + "';";
+                      System.out.println(query);
+                   ResultSet rs=stm.executeQuery(query);
+               
+                   if(rs.next()){
+                     fname =   rs.getString(1);
+                      lname =   rs.getString(2);
+                       usernamee =   rs.getString(3);
+                        vid =   rs.getString(4);
+                   
+                   }              
+           }catch(Exception e){             
+           }
+            System.out.println(fname + "" + lname + "" + usernamee + "" + vid);
+          
+            String cname="";
+        String sector="";
+        String city="";
+        String state="";
+          String totalc="";
+        String annret="";
+        String noofstrati="";
+        String status = "";
+        
+        
+         try{
+               Class.forName("com.mysql.cj.jdbc.Driver");
+              Connection con=DriverManager.getConnection("jdbc:mysql://localhost:3306/investclub?allowPublicKeyRetrieval=true&useSSL=false","root","ROHANshetty25");
+            Statement stm=con.createStatement();
+                    String query = "select * from venture where vid ='" + vid + "';";
+                  
+                   ResultSet rs=stm.executeQuery(query);
+               
+                   if(rs.next()){
+                     cname =   rs.getString(1);
+                      sector =   rs.getString(2);
+                       city =   rs.getString(3);
+                        state =   rs.getString(4);
+                         totalc =   rs.getString(5);
+                      annret =   rs.getString(6);
+                       noofstrati =   rs.getString(7);
+                       status = rs.getString(8);
+                   }              
+           }catch(Exception e){             
+           }
+         
+       
+           UpdateinvestorInfo ui = new UpdateinvestorInfo();
+             ui.fname1.setText(fname);
+           ui.lname1.setText(lname);
+           ui.usernamefeild.setText(usernamee);
+           ui.cnamee.setText(cname);
+           ui.sectore.setText(sector);
+           ui.citye.setText(city);
+           ui.statee.setText(state);
+           ui.tce.setText(totalc);
+             ui.are.setText(annret);
+               ui.noofsie.setText(noofstrati);
+               ui.statuse.setSelectedItem(status);
+          ui.setVisible(true);
+         
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+           String fname="";
+        String lname="";
+        String usernamee="";
+        String vid="";
+        
+          try{
+               Class.forName("com.mysql.cj.jdbc.Driver");
+              Connection con=DriverManager.getConnection("jdbc:mysql://localhost:3306/investclub?allowPublicKeyRetrieval=true&useSSL=false","root","ROHANshetty25");
+            Statement stm=con.createStatement();
+                    String query = "select * from investor where username ='" + usernamei.getText() + "';";
+                      System.out.println(query);
+                   ResultSet rs=stm.executeQuery(query);
+               
+                   if(rs.next()){
+                     fname =   rs.getString(1);
+                      lname =   rs.getString(2);
+                       usernamee =   rs.getString(3);
+                        vid =   rs.getString(4);
+                   
+                   }              
+           }catch(Exception e){             
+           }
+        
+              try{
+              PreparedStatement pst;
+             Class.forName("com.mysql.cj.jdbc.Driver");
+              Connection con=DriverManager.getConnection("jdbc:mysql://localhost:3306/investclub?allowPublicKeyRetrieval=true&useSSL=false","root","ROHANshetty25");
+           String query = "DELETE from venture where vid = " + vid + ";";
+                        pst = con.prepareStatement(query);
+                          pst.execute();
+                      JOptionPane.showMessageDialog(this,"deleted venture");
+                      con.close();
+            
+        }catch(Exception e){   
+        }
+              
+                      try{
+              PreparedStatement pst;
+             Class.forName("com.mysql.cj.jdbc.Driver");
+              Connection con=DriverManager.getConnection("jdbc:mysql://localhost:3306/investclub?allowPublicKeyRetrieval=true&useSSL=false","root","ROHANshetty25");
+           String query = "DELETE from investor where username = '" + usernamee + "';";
+                        pst = con.prepareStatement(query);
+                          pst.execute();
+                      JOptionPane.showMessageDialog(this,"deleted investor");
+                      con.close();
+            
+        }catch(Exception e){   
+        }
+                      
+                               PreparedStatement pst;
+           try{
+                   Class.forName("com.mysql.cj.jdbc.Driver");
+              Connection con=DriverManager.getConnection("jdbc:mysql://localhost:3306/investclub?allowPublicKeyRetrieval=true&useSSL=false","root","ROHANshetty25");
+           String query = "UPDATE user set count ="+ 0 +" where username ='" + usernamee +"';";
+                        pst = con.prepareStatement(query);
+                          pst.execute();
+                      JOptionPane.showMessageDialog(this,"updated user");
+                      con.close();
+                       
+           }catch(Exception e){
+            System.out.println(e); 
+         }
+                      
+                      
+                           dispose();
+                      login i = new login();
+                      i.setVisible(true);
+        
+    }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -274,6 +439,7 @@ public class IHomePage extends javax.swing.JFrame {
     public javax.swing.JLabel cnamei;
     public static javax.swing.JLabel fnamei;
     private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel2;

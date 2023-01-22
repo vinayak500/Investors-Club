@@ -55,6 +55,8 @@ public class investorInfo extends javax.swing.JFrame {
         jLabel10 = new javax.swing.JLabel();
         usernamefeild = new javax.swing.JTextField();
         fname1 = new javax.swing.JTextField();
+        jLabel11 = new javax.swing.JLabel();
+        statuse = new javax.swing.JComboBox<>();
 
         jScrollPane1.setViewportView(jEditorPane1);
 
@@ -172,6 +174,12 @@ public class investorInfo extends javax.swing.JFrame {
             }
         });
 
+        jLabel11.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jLabel11.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel11.setText("ARE YOU CURRENTLY LOOKING TO INVEST:");
+
+        statuse.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "YES", "NO" }));
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -225,18 +233,22 @@ public class investorInfo extends javax.swing.JFrame {
                 .addContainerGap())
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(45, 45, 45)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel21, javax.swing.GroupLayout.PREFERRED_SIZE, 239, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 265, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(noofsie, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel20)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(are, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(statuse, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(28, 28, 28))
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(jPanel1Layout.createSequentialGroup()
+                            .addComponent(jLabel21, javax.swing.GroupLayout.PREFERRED_SIZE, 239, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(noofsie, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(jPanel1Layout.createSequentialGroup()
+                            .addComponent(jLabel20)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(are, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(124, 124, 124))
         );
@@ -282,7 +294,10 @@ public class investorInfo extends javax.swing.JFrame {
                     .addComponent(jLabel21)
                     .addComponent(noofsie, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addComponent(jButton1)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton1)
+                    .addComponent(jLabel11)
+                    .addComponent(statuse, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(36, Short.MAX_VALUE))
         );
 
@@ -330,7 +345,7 @@ public class investorInfo extends javax.swing.JFrame {
         String fname =  fname1.getText();
        String lname =  lname1.getText();
        String username = usernamefeild.getText();
-        
+ 
         
         
         try{
@@ -375,6 +390,7 @@ public class investorInfo extends javax.swing.JFrame {
        String tcj =  tce.getText();
        String arj = are.getText();
        String noofsij =  noofsie.getText();
+       String status = (String)statuse.getSelectedItem();
    
                
           try{
@@ -384,7 +400,7 @@ public class investorInfo extends javax.swing.JFrame {
 
               
               
-              String query = "INSERT INTO venture (cname,sector,city,state,totalcapital,annualreturns,noofinvest,vid) VALUES (?,?,?,?,?,?,?,?)";
+              String query = "INSERT INTO venture (cname,sector,city,state,totalcapital,annualreturns,noofinvest,status,vid) VALUES (?,?,?,?,?,?,?,?,?)";
             PreparedStatement p = con.prepareStatement(query);
                       p.setString(1,cnamej);
                       p.setString(2,sectorj);
@@ -393,7 +409,8 @@ public class investorInfo extends javax.swing.JFrame {
                       p.setString(5,tcj);
                        p.setString(6,arj);
                         p.setString(7,noofsij);
-                         p.setInt(8,investid);
+                          p.setString(8,status);
+                         p.setInt(9,investid);
            
                           p.executeUpdate();
                       JOptionPane.showMessageDialog(this,"Succesfully Inserted Venture");
@@ -402,6 +419,21 @@ public class investorInfo extends javax.swing.JFrame {
            }catch(Exception e){
             System.out.println(e); 
          }       
+          
+           PreparedStatement pst;
+           try{
+                   Class.forName("com.mysql.cj.jdbc.Driver");
+              Connection con=DriverManager.getConnection("jdbc:mysql://localhost:3306/investclub?allowPublicKeyRetrieval=true&useSSL=false","root","ROHANshetty25");
+           String query = "UPDATE user set count ="+ 1 +" where username ='" + username +"';";
+                        pst = con.prepareStatement(query);
+                          pst.execute();
+                      JOptionPane.showMessageDialog(this,"updated user");
+                      con.close();
+                       
+           }catch(Exception e){
+            System.out.println(e); 
+         }
+  
           
     
               
@@ -470,6 +502,7 @@ public class investorInfo extends javax.swing.JFrame {
     private javax.swing.JEditorPane jEditorPane1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel20;
@@ -487,6 +520,7 @@ public class investorInfo extends javax.swing.JFrame {
     public static javax.swing.JTextField noofsie;
     public static javax.swing.JTextField sectore;
     public static javax.swing.JTextField statee;
+    private javax.swing.JComboBox<String> statuse;
     public static javax.swing.JTextField tce;
     public static javax.swing.JTextField usernamefeild;
     // End of variables declaration//GEN-END:variables

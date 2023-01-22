@@ -3,6 +3,8 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package investorsclub;
+import static investorsclub.FHomePage.username;
+import static investorsclub.IHomePage.usernamei;
 import javax.swing.JOptionPane;
 import java.sql.*;
 import javax.swing.JFrame;
@@ -196,40 +198,183 @@ public class login extends javax.swing.JFrame {
              Class.forName("com.mysql.cj.jdbc.Driver");
               Connection con=DriverManager.getConnection("jdbc:mysql://localhost:3306/investclub?allowPublicKeyRetrieval=true&useSSL=false","root","ROHANshetty25");
                Statement stm=con.createStatement();
-                    String query = "select * from usertest where username = '" + username1 + "' and password = '" + password1 + "';";
+                    String query = "select * from user where username = '" + username1 + "' and password = '" + password1 + "';";
                    ResultSet rs=stm.executeQuery(query);
       if(rs.next()){
                dispose();
-               String query2 = "select * from usertest where username = '" + username1 + "' and password = '" + password1 + "' and choice = 'Investor'";
+               String query2 = "select * from user where username = '" + username1 + "' and password = '" + password1 + "' and choice = 'Investor'";
                  ResultSet rsChoice =stm.executeQuery(query2); 
                  if(rsChoice.next()){
                     
-                       String iname = rsChoice.getString(1);
-                             System.out.println(iname);
-                           //  IHomePage.investorname.setText(iname);
-                         investorInfo hp = new investorInfo();
+                       int num = rsChoice.getInt(5);
+                       
+                          if(num ==0){
+                              investorInfo hp = new investorInfo();
                          hp.usernamefeild.setText(username1);
-                         
                          hp.setVisible(true);
+                          }else{
+                              
+       String fname="";
+        String lname="";
+        String usernamee="";
+        int vid=0;
+        
+          try{
+               Class.forName("com.mysql.cj.jdbc.Driver");
+              con=DriverManager.getConnection("jdbc:mysql://localhost:3306/investclub?allowPublicKeyRetrieval=true&useSSL=false","root","ROHANshetty25");
+             stm=con.createStatement();
+                    query = "select * from investor where username ='" + username1 + "';";
+                      System.out.println(query);
+                  rs=stm.executeQuery(query);
+               
+                   if(rs.next()){
+                     fname =   rs.getString(1);
+                      lname =   rs.getString(2);
+                       usernamee =   rs.getString(3);
+                        vid =   rs.getInt(4);
+                   
+                   }              
+           }catch(Exception e){             
+           }
+          
+          
+                  String cname="";
+        String sector="";
+        String city="";
+        String state="";
+          String totalc="";
+        String annret="";
+        String noofstrati="";
+        
+        
+         try{
+               Class.forName("com.mysql.cj.jdbc.Driver");
+            con=DriverManager.getConnection("jdbc:mysql://localhost:3306/investclub?allowPublicKeyRetrieval=true&useSSL=false","root","ROHANshetty25");
+            stm=con.createStatement();
+                     query = "select * from venture where vid = " + vid + " ;";
+                  
+                 rs=stm.executeQuery(query);
+               
+                   if(rs.next()){
+                     cname =   rs.getString(1);
+                      sector =   rs.getString(2);
+                       city =   rs.getString(3);
+                        state =   rs.getString(4);
+                         totalc =   rs.getString(5);
+                      annret =   rs.getString(6);
+                       noofstrati =   rs.getString(7);
+                   }              
+           }catch(Exception e){             
+           }
+          
+         dispose();
+           IHomePage hp = new IHomePage();
+          hp.fnamei.setText(fname);
+          hp.usernamei.setText(usernamee);
+           hp.cnamei.setText(cname);
+          hp.tci.setText(totalc);
+           hp.ari.setText(annret);
+          hp.sectori.setText(sector);
+          hp.setVisible(true);
+                              
+                              /////////
+                          }
+                       
+                       
+                       
+                         
+                         
+                         
+                         
+                 
                  }else{
                      
-                      String query3 = "select * from usertest where username = '" + username1 + "' and password = '" + password1 + "' and choice = 'Founder'";
+                      String query3 = "select * from user where username = '" + username1 + "' and password = '" + password1 + "' and choice = 'Founder'";
                  ResultSet rsChoice1 =stm.executeQuery(query3);
-                 if(rsChoice1.next()){
-                    
-                       String fname = rsChoice1.getString(1);
-                         //    System.out.println(fname);
-                           //  IHomePage.investorname.setText(iname);
-                            String username = rsChoice1.getString(2);
+                 String email="";
+                 String usernamee="";
+                 int num=0;
+                 if(rsChoice1.next()){ 
+                            email = rsChoice1.getString(1);
+                            usernamee = rsChoice1.getString(2);   
+                            num = rsChoice1.getInt(5);
+                            
+                          
+                 }   
+                 
+                 if(num == 0){
+                       StartupInfo si = new StartupInfo();  
+                         si.username.setText(usernamee);
+                         si.setVisible(true); 
+                 } else{
                            
-                           
-                        StartupInfo si = new StartupInfo();  
-                         si.username.setText(username);
-                         si.setVisible(true);
+                       
+                         String fid="";
+                         String fname = "";
+           try{
+                Class.forName("com.mysql.cj.jdbc.Driver");
+             con=DriverManager.getConnection("jdbc:mysql://localhost:3306/investclub?allowPublicKeyRetrieval=true&useSSL=false","root","ROHANshetty25");
+               stm=con.createStatement();
+               query = "select * from founder where username ='" + username.getText() + "';";
+                    rs=stm.executeQuery(query);
+               
+                   if(rs.next()){
+                       fname = rs.getString(1);
+                        fid =   rs.getString(4);                  
+                   }  
+           }catch(Exception e){
+               
+           }
+           
+           
+                  String cname1 = "";
+          String sector1 = "";
+          String cid1 = "";
+          
+            try{
+               Class.forName("com.mysql.cj.jdbc.Driver");
+               con=DriverManager.getConnection("jdbc:mysql://localhost:3306/investclub?allowPublicKeyRetrieval=true&useSSL=false","root","ROHANshetty25");
+            stm=con.createStatement();
+                 query = "select * from company where fid ='" + fid + "';";
+                  rs=stm.executeQuery(query);
+               
+                   if(rs.next()){
+                     cname1 =   rs.getString(1);
+                      sector1 =   rs.getString(2);
+                         cid1 =   rs.getString(5);
+                   
+                   }              
+           }catch(Exception e){             
+           }
+            
+                     String curval1 = ""; 
+               
+            
+                try{
+               Class.forName("com.mysql.cj.jdbc.Driver");
+             con=DriverManager.getConnection("jdbc:mysql://localhost:3306/investclub?allowPublicKeyRetrieval=true&useSSL=false","root","ROHANshetty25");
+           stm=con.createStatement();
+                    query = "select * from financials where cid ='" + cid1 + "';";
+                  rs=stm.executeQuery(query);
+               
+                   if(rs.next()){
+                     curval1 =   rs.getString(1);                   
+                   }              
+           }catch(Exception e){             
+           }
+                     
+   FHomePage hp = new FHomePage();
+    hp.fname.setText(fname);
+    hp.username.setText(usernamee);
+    hp.cname.setText(cname1);
+    hp.curval.setText(curval1);
+    hp.sector.setText(sector1);
+    hp.setVisible(true);  
+                      
                  }
-
-   
-                 }               
+                 
+                 
+            }               
            }else{
                    JOptionPane.showMessageDialog(this,"incorrect username and password");
                     }
@@ -241,7 +386,7 @@ public class login extends javax.swing.JFrame {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
-             
+             dispose();
         signUp su = new signUp();
          su.setVisible(true); 
         
