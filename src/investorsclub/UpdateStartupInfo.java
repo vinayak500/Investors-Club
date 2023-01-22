@@ -40,7 +40,7 @@ public class UpdateStartupInfo extends javax.swing.JFrame {
         jLabel8 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
-        cname = new javax.swing.JTextField();
+        cnamee = new javax.swing.JTextField();
         city = new javax.swing.JTextField();
         sector = new javax.swing.JTextField();
         state = new javax.swing.JTextField();
@@ -122,9 +122,9 @@ public class UpdateStartupInfo extends javax.swing.JFrame {
         jLabel7.setForeground(new java.awt.Color(255, 255, 255));
         jLabel7.setText("STATE:");
 
-        cname.addActionListener(new java.awt.event.ActionListener() {
+        cnamee.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cnameActionPerformed(evt);
+                cnameeActionPerformed(evt);
             }
         });
 
@@ -242,7 +242,7 @@ public class UpdateStartupInfo extends javax.swing.JFrame {
                                         .addGap(6, 6, 6)
                                         .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(cname, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addComponent(cnamee, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE))
                                     .addComponent(jLabel9, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
                                         .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -353,7 +353,7 @@ public class UpdateStartupInfo extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel5)
-                            .addComponent(cname, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(cnamee, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(72, 72, 72)
                         .addComponent(jLabel10))
                     .addGroup(jPanel1Layout.createSequentialGroup()
@@ -428,9 +428,9 @@ public class UpdateStartupInfo extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_fname1ActionPerformed
 
-    private void cnameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cnameActionPerformed
+    private void cnameeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cnameeActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_cnameActionPerformed
+    }//GEN-LAST:event_cnameeActionPerformed
 
     private void cityActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cityActionPerformed
         // TODO add your handling code here:
@@ -462,7 +462,7 @@ public class UpdateStartupInfo extends javax.swing.JFrame {
           String state1 = "";
           String cid1 = "";
         
-//         cname1  =  cname.getString();
+      cname1  =  cnamee.getString();
 //        sector1 =   sector.getString();
 //         city1 =  city.getString();
 //         state1 =  state.getString();
@@ -517,7 +517,7 @@ public class UpdateStartupInfo extends javax.swing.JFrame {
     public static javax.swing.JTextField ar;
     public static javax.swing.JTextField assets;
     public static javax.swing.JTextField city;
-    public static javax.swing.JTextField cname;
+    public static javax.swing.JTextField cnamee;
     public static javax.swing.JTextField cr;
     public static javax.swing.JTextField fname1;
     public static javax.swing.JTextField fundsraised;

@@ -331,7 +331,7 @@ public class FHomePage extends javax.swing.JFrame {
            ui.update.setText("UPDATE");
            
            
-           ui.cname.setText(cname1);
+           ui.cnamee.setText(cname1);
             ui.sector.setText(sector1);
              ui.city.setText(city1);
               ui.state.setText(state1);
