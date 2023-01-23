@@ -506,6 +506,7 @@ public class UpdateStartupInfo extends javax.swing.JFrame {
          state1 =  state.getText();
       PreparedStatement pst;
            try{
+               
                    Class.forName("com.mysql.cj.jdbc.Driver");
               Connection con=DriverManager.getConnection("jdbc:mysql://localhost:3306/investclub?allowPublicKeyRetrieval=true&useSSL=false","root","ROHANshetty25");
            String query = "UPDATE company set name = '" + cname1 + "' ,sector = '" + sector1 + "' ,city ='" + city1 + "',state = '" + state1 + "' where cid = " + id.getText() + ";";

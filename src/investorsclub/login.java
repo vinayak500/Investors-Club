@@ -79,6 +79,7 @@ public class login extends javax.swing.JFrame {
 
         jLabel4.setText("Dont Have an account ? ");
 
+        jButton2.setBackground(new java.awt.Color(0, 153, 255));
         jButton2.setText("Sign Up");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -94,7 +95,7 @@ public class login extends javax.swing.JFrame {
         jLabel6.setForeground(new java.awt.Color(255, 255, 255));
         jLabel6.setText("Identify the next tech trend and hot newcomers in your target industry. ");
 
-        jButton3.setBackground(new java.awt.Color(255, 204, 51));
+        jButton3.setBackground(new java.awt.Color(255, 153, 51));
         jButton3.setFont(new java.awt.Font("Segoe UI Black", 1, 12)); // NOI18N
         jButton3.setText("GET STARTED");
         jButton3.addActionListener(new java.awt.event.ActionListener() {

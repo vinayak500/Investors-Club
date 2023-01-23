@@ -184,7 +184,7 @@ public class signUp extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(459, Short.MAX_VALUE))
+                .addContainerGap(835, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -237,9 +237,7 @@ public class signUp extends javax.swing.JFrame {
         dispose();
          login u = new login();
          u.setVisible(true);
-         u.pack();
-               u.setLocation(null);
-               u.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); 
+        // u.setExtendedState(JFrame. MAXIMIZED_BOTH); 
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void emailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_emailActionPerformed
